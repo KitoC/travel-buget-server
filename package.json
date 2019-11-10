@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sql": "node_modules/.bin/sequelize"
+    "sql": "node_modules/.bin/sequelize",
+    "migrate-db": "node_modules/.bin/sequelize db:migrate && yarn",
+    "deploy": "git push && git push heroku master",
+    "prod-logs": "heroku logs --tail",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
