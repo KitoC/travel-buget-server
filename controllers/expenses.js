@@ -56,29 +56,6 @@ router.patch(
   responseShaper
 );
 
-// router.patch(
-//   BASE_ROUTE,
-//   async (req, res, next) => {
-//     try {
-//       res.data = await db.expenses.bulkCreate(req.body || [], {
-//         updateOnDuplicate: [
-//           "id",
-//           "date",
-//           "budget",
-//           "past",
-//           "currencyRate",
-//           "currencyType"
-//         ]
-//       });
-
-//       next();
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   },
-//   responseShaper
-// );
-
 // destroy Models entry (by id)
 router.delete(
   BASE_ROUTE_ID,

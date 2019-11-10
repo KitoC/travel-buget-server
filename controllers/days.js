@@ -12,10 +12,9 @@ router.post(
   BASE_ROUTE,
   async (req, res, next) => {
     try {
-      console.log("POST POST");
-      console.log(req.body);
-
-      res.data = await db.days.create(req.body);
+      res.data = await db.days.create(req.body, {
+        include: db.days.getIncluded(db)
+      });
 
       next();
     } catch (error) {
@@ -30,7 +29,7 @@ router.get(
   BASE_ROUTE,
   async (req, res, next) => {
     try {
-      res.data = await db.days.findAll();
+      res.data = await db.days.findAll({ include: db.days.getIncluded(db) });
       next();
     } catch (error) {
       console.log(error);
@@ -46,7 +45,10 @@ router.patch(
     try {
       const { id } = req.params;
 
-      const day = await db.days.findOne({ where: { id } });
+      const day = await db.days.findOne({
+        where: { id },
+        include: db.days.getIncluded(db)
+      });
 
       if (!day) return next({ msg: "Not found" });
 
@@ -64,6 +66,7 @@ router.patch(
   BASE_ROUTE,
   async (req, res, next) => {
     try {
+      console.log(req.body);
       res.data = await db.days.bulkCreate(req.body || [], {
         updateOnDuplicate: [
           "id",
@@ -72,7 +75,8 @@ router.patch(
           "past",
           "currencyRate",
           "currencyType"
-        ]
+        ],
+        include: db.days.getIncluded(db)
       });
 
       next();

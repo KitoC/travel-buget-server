@@ -20,5 +20,16 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
+  days.getIncluded = db => {
+    return [
+      {
+        model: db.expenses,
+        as: "expenses",
+        required: false,
+        attributes: ["id", "name", "amount", "tags", "dayId"]
+      }
+    ];
+  };
+
   return days;
 };
