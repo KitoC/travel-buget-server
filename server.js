@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({ origin: "https://gifted-colden-848734.netlify.com" }));
 
 app.use("/", require("./routes"));
 
