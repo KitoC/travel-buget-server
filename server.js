@@ -4,11 +4,29 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors({ origin: "https://gifted-colden-848734.netlify.com" }));
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://gifted-colden-848734.netlify.com"
+];
+
+app.use(
+  cors({
+    origin: function(origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          "The CORS policy for this site does not " +
+          "allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    }
+  })
+);
 
 app.use("/", require("./routes"));
 
-const PORT = 4242;
+const PORT = 3000;
 
 app.listen(PORT, () => {
   console.log(`server listening on ${PORT}`);
