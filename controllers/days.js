@@ -74,7 +74,8 @@ router.patch(
           "budget",
           "past",
           "currencyRate",
-          "currencyType"
+          "currencyType",
+          "name"
         ],
         include: db.days.getIncluded(db)
       });
