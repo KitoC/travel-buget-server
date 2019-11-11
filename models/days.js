@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
       budget: DataTypes.FLOAT,
       past: DataTypes.BOOLEAN,
       currencyRate: DataTypes.FLOAT,
-      currencyType: DataTypes.STRING
+      currencyType: DataTypes.STRING,
+      name: DataTypes.STRING
     },
     {}
   );

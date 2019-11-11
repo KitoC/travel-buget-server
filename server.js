@@ -26,8 +26,8 @@ app.use(
 
 app.use("/", require("./routes"));
 
-const PORT = 3000;
-
-app.listen(process.env.PORT || PORT, () => {
+const PORT = process.env.PORT || 4040;
+console.log(process.env.PORT);
+app.listen(PORT, () => {
   console.log(`server listening on ${PORT}`);
 });
