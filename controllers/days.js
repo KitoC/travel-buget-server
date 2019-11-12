@@ -66,8 +66,7 @@ router.patch(
   BASE_ROUTE,
   async (req, res, next) => {
     try {
-      console.log(req.body);
-      res.data = await db.days.bulkCreate(req.body || [], {
+      await db.days.bulkCreate(req.body || [], {
         updateOnDuplicate: [
           "id",
           "date",
@@ -79,6 +78,8 @@ router.patch(
         ],
         include: db.days.getIncluded(db)
       });
+
+      res.data = await db.days.findAll();
 
       next();
     } catch (error) {
